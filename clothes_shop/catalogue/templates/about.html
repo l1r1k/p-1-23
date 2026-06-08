@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас — TrendWear</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">TRENDWEAR</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Новинки</a></li>
+                <li><a href="{% url 'about' %}">О нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>История нашего бренда</h1>
+        <p>Создаем моду, которая вдохновляет и дарит комфорт</p>
+    </section>
+
+    <section class="about-content">
+        <div class="text-block">
+            <h2>Кто мы такие</h2>
+            <p><strong>TrendWear</strong> — это не просто интернет-магазин одежды, это комьюнити людей, влюбленных в стиль и качество. Мы основали нашу компанию в 2026 году с простой идеей: модная и удобная одежда должна быть доступной каждому, независимо от того, где он находится.</p>
+            <p>Мы тщательно отбираем ткани, следим за каждым этапом производства и сотрудничаем только с теми фабриками, которые разделяют наши этические стандарты.</p>
+        </div>
+
+        <div class="text-block">
+            <h2>Наши главные ценности</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Качество</h3>
+                    <p>Мы не идем на компромиссы. Каждая деталь, от пуговицы до кроя, проходит строгий контроль качества.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Экологичность</h3>
+                    <p>Мы стремимся минимизировать наш углеродный след, используя переработанные материалы и экологичную упаковку.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Доступность</h3>
+                    <p>Стиль не должен стоить целое состояние. Мы оптимизируем логистику, чтобы предлагать вам лучшие цены.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 TrendWear. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
