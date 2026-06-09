@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendWear — Интернет-магазин одежды</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">TRENDWEAR</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'catalogue' %}">Каталог</a></li>
+                <li><a href="#">Новинки</a></li>
+                <li><a href="{% url 'about' %}">О нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <a href="{% url 'clothes_create' %}">Добавь одежду</a>
+
+    <section class="categories">
+        <h2>Доступная одежда</h2>
+        <div class="grid">
+            {% for clothe in clothes %}
+            <div class="card">
+                <div class="card-img" style="background: url('{{ clothe.photo.url }}') center/cover;"></div>
+                <div class="card-info">
+                    <h3>{{ clothe.name }}</h3>
+                    <a href="{% url 'clothes_detail' clothe.pk %}" style="color: #d9534f; font-weight: bold;">Смотреть &rarr;</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="card">
+                <div class="card-info">
+                    <h3>Одежды нет</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 TrendWear. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
