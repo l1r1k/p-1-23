@@ -1,45 +1,21 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrendWear — Интернет-магазин одежды</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <header>
-        <div class="logo">TRENDWEAR</div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'index' %}">Главная</a></li>
-                <li><a href="{% url 'catalogue' %}">Каталог</a></li>
-                <li><a href="#">Новинки</a></li>
-                <li><a href="{% url 'about' %}">О нас</a></li>
-            </ul>
-        </nav>
-    </header>
+{% block title_name %}{{ clothe.name }}{% endblock %}
 
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <img src="{{ clothe.photo.url }}" alt="{{ clothe.name }}" style="max-height: 250px; max-width: 250px;"/>
-        <h1>{{ clothe.name }}</h1>
-        <p>Описание: {{ clothe.description }}</p>
-        <p>Цена: {{ clothe.price }}руб.</p>
-        <p>Размер: {{ clothe.size }}</p>
-        <p>Цвет: {{ clothe.color }}</p>
-        <p>Категория: {{ clothe.category }}</p>
-        <p>Коллекции: {% for collection in clothe.collection.all %} {{ collection.name }} {% if not forloop.last %}, {% else %}. {% endif %}{% endfor %}</p>
-        <p>Доступность: {% if clothe.is_exists %}Да{% else %}Нет{% endif %}</p>
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+    <img src="{{ clothe.photo.url }}" alt="{{ clothe.name }}" style="max-height: 250px; max-width: 250px;"/>
+    <h1>{{ clothe.name }}</h1>
+    <p>Описание: {{ clothe.description }}</p>
+    <p>Цена: {{ clothe.price }}руб.</p>
+    <p>Размер: {{ clothe.size }}</p>
+    <p>Цвет: {{ clothe.color }}</p>
+    <p>Категория: {{ clothe.category }}</p>
+    <p>Коллекции: {% for collection in clothe.collection.all %} {{ collection.name }} {% if not forloop.last %}, {% else %}. {% endif %}{% endfor %}</p>
+    <p>Доступность: {% if clothe.is_exists %}Да{% else %}Нет{% endif %}</p>
 
-        <a href="{% url 'clothes_update' clothe.pk %}" style="color: green;">Редактировать</a>
-        <a href="{% url 'clothes_delete' clothe.pk %}" style="color: red;">Удалить</a>
-        <a href="{% url 'catalogue' %}" style="color: blue;">Вернуться назад</a>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 TrendWear. Все права защищены.</p>
-    </footer>
-
-</body>
-</html>
+    <a href="{% url 'clothes_update' clothe.pk %}" style="color: green;">Редактировать</a>
+    <a href="{% url 'clothes_delete' clothe.pk %}" style="color: red;">Удалить</a>
+    <a href="{% url 'catalogue' %}" style="color: blue;">Вернуться назад</a>
+</div>
+{% endblock %}

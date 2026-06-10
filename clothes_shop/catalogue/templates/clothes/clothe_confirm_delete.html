@@ -1,38 +1,14 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrendWear — Интернет-магазин одежды</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <header>
-        <div class="logo">TRENDWEAR</div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'index' %}">Главная</a></li>
-                <li><a href="{% url 'catalogue' %}">Каталог</a></li>
-                <li><a href="#">Новинки</a></li>
-                <li><a href="{% url 'about' %}">О нас</a></li>
-            </ul>
-        </nav>
-    </header>
+{% block title_name %}Удаление позиции{% endblock %}
 
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <h1>Удаление позиции "{{ clothe.name }}"</h1>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit">Удалить</button>
-        </form>
-        <a href="{% url 'catalogue' %}" style="color: blue;">Вернуться назад</a>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 TrendWear. Все права защищены.</p>
-    </footer>
-
-</body>
-</html>
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+    <h1>Удаление позиции "{{ clothe.name }}"</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'catalogue' %}" style="color: blue;">Вернуться назад</a>
+</div>
+{% endblock %}
