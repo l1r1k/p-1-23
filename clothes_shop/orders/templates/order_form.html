@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title_name %}Оформление заказа{% endblock %}
+
+{% block main_class %}order-form{% endblock %}
+
+{% block content %}
+    <h1>Оформление заказа</h1>
+    <form method="post" action="{% url 'order_confirm'%}">
+        {% csrf_token %}
+        {{ form_order.as_div }}
+        <button type="submit">Оформить заказ</button>
+    </form>
+    <a href="{% url 'basket_detail' %}">Обратно в корзину</a>
+{% endblock %}

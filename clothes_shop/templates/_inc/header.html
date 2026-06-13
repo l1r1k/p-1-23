@@ -6,6 +6,13 @@
             <li><a href="{% url 'catalogue' %}">Каталог</a></li>
             <li><a href="#">Новинки</a></li>
             <li><a href="{% url 'about' %}">О нас</a></li>
+            <li><a href="{% url 'basket_detail' %}">Корзина</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout_page' %}">Выйти</a></li>
+            {% else %}
+            <li><a href="{% url 'login_page' %}">Войти</a></li>
+            <li><a href="{% url 'registration_page' %}">Зарегистрироваться</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>

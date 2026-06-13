@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title_name %}Регистрация{% endblock %}
+
+{% block main_class %}reg-form{% endblock %}
+
+{% block content %}
+<h1>Регистрация</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">Создать аккаунт</button>
+</form>
+
+<a href="{% url 'login_page' %}">Есть аккаунт? Войти</a>
+{% endblock %}

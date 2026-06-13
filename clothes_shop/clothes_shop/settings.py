@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalogue',
+    'authorization',
+    'orders',
+    'basket',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +131,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_URL = '/auth/login/'
+
+SESSION_ENGIN = 'django.contrib.sessions.backends.signed_cookies'
+BASKET_SESSION_ID = 'basket'

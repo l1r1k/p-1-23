@@ -3,11 +3,14 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import Category, Collection, Clothe
 from .forms import ClotheForm
+from django.contrib.auth.decorators import login_required
+from basket.forms import BasketAddClotheForm
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
+@login_required
 def about(request):
     return render(request, 'about.html')
 
@@ -20,6 +23,11 @@ class ClothesDetailView(DetailView):
     model = Clothe
     template_name = 'clothes/clothe_detail.html'
     context_object_name = 'clothe'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_basket'] = BasketAddClotheForm()
+        return context
 
 class ClothesCreateView(CreateView):
     model = Clothe

@@ -14,6 +14,12 @@
     <p>Коллекции: {% for collection in clothe.collection.all %} {{ collection.name }} {% if not forloop.last %}, {% else %}. {% endif %}{% endfor %}</p>
     <p>Доступность: {% if clothe.is_exists %}Да{% else %}Нет{% endif %}</p>
 
+    <form method="post" action="{% url 'basket_add' clothe.pk %}">
+        {% csrf_token %}
+        {{ form_basket.as_div }}
+        <button type="submit">В корзину</button>
+    </form>
+
     <a href="{% url 'clothes_update' clothe.pk %}" style="color: green;">Редактировать</a>
     <a href="{% url 'clothes_delete' clothe.pk %}" style="color: red;">Удалить</a>
     <a href="{% url 'catalogue' %}" style="color: blue;">Вернуться назад</a>

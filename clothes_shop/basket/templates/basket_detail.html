@@ -1,0 +1,72 @@
+{% extends 'base.html'%}
+
+{% block title_name %}Корзина{% endblock %}
+
+{% block main_class %}container{% endblock %}
+
+{% block content %}
+    <h1>Корзина</h1>
+    {% if basket|length > 0 %}
+    <table>
+        <thead>
+            <tr>
+                <th>Изображение</th>
+                <th>Товар</th>
+                <th>Количество</th>
+                <th>Цена за шт.</th>
+                <th>Цена за позицию</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in basket %}
+                {% with item.product as product %}
+                    <tr>
+                        <td>
+                            {% if product.photo %}
+                                <img src="{{ product.photo.url }}" style="max-height: 100px; max-width: 100px; object-fit: contain;">
+                            {% else %}
+                                <img src="media/img/no-photo.jpg" style="max-height: 100px; max-width: 100px; object-fit: contain;">
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <a href="{% url 'clothes_detail' product.pk %}">{{ product.name }}</a>
+                        </td>
+
+                        <td>
+                            {{ item.count }} шт.
+                        </td>
+
+                        <td>
+                            {{ product.price }} руб.
+                        </td>
+
+                        <td>
+                            {{ item.total_price }} руб.
+                        </td>
+
+                        <td>
+                            <a href="{% url 'basket_remove' product.pk %}">Удалить</a>
+                        </td>
+                    </tr>   
+                {% endwith %}
+            {% endfor %}
+            <tr>
+                <td colspan="2">Всего</td>
+                <td>{{ basket|length }} штук</td>
+                <td colspan="2">{{ basket.get_total_price }} руб</td>
+                <td>
+                    <a href="{% url 'basket_clear' %}">Очистить корзину</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{% url 'order_open' %}">Купить</a>
+    {% else %}
+    <h1>Корзина пуста. Сперва добавьте в нее товары!</h1>
+    <a href="{% url 'catalogue' %}">В каталог</a>
+    {% endif %}
+{% endblock %}
